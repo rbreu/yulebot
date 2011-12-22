@@ -23,7 +23,7 @@ This will add an item to the list.
 
 Example usage::
 
-  /msg YuleListBot add My aweome new item!
+  /msg YuleListBot add My awesome new item!
 
 **delete <index>**
  
