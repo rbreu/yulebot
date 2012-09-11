@@ -35,10 +35,20 @@ Example usage::
 
 
 All messages the bot doesn't understand will send you a private
-message with a list to this help file.
+message with a link to this help file.
 
 
 Installation
 ------------
 
-The bot needs Python 2.x and the packages irclib and ircbot to run.
+The bot needs Python 2.x and the python packes listed in
+requirements.txt to run. If you're using pip, you can install the
+dependencies via::
+ 
+  pip install ../requirements.txt
+
+Once the dependencies are installed, run from the main directory::
+
+  src/yulebot.py
+
+

@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import ircbot
+import irc.bot
 import time
 import threading
 import ConfigParser
@@ -9,14 +9,14 @@ import re
 
 
 # Create our bot class
-class YuleBot(ircbot.SingleServerIRCBot):
+class YuleBot(irc.bot.SingleServerIRCBot):
 
     def __init__(self, server_list, nickname, realname, channel,
                  delay, reconnection_interval=60):
         self.channel = channel
         self.delay = delay
-        ircbot.SingleServerIRCBot.__init__(self, server_list, nickname,
-                                           realname, reconnection_interval)
+        irc.bot.SingleServerIRCBot.__init__(self, server_list, nickname,
+                                            realname, reconnection_interval)
 
     # Join the channel when welcomed
     def on_welcome (self, connection, event):
@@ -69,13 +69,14 @@ class YuleBot(ircbot.SingleServerIRCBot):
     def help(self, recipient=None):
         recipient = self.channel if recipient == None else recipient
         logging.debug("Showing help to %s" % recipient)
-        self.connection.privmsg(recipient, "Hi, you can see a description at https://github.com/rbreu/yulebot")
+        self.connection.privmsg(recipient, "Hi, you can see a description at https://github.com/rbreu/yulebot#yuletide-bot")
             
 
 # Create the bot
-logging.basicConfig(level=logging.DEBUG)
 config = ConfigParser.SafeConfigParser()
 config.read(["config.ini"])
+loglevel = config.get("DEFAULT", "loglevel")
+logging.basicConfig(level=getattr(logging, loglevel, "INFO"))
 logging.info("Read config from config.ini")
 bot = YuleBot([(config.get("DEFAULT", "server"), int(config.get("DEFAULT", "port")))],
               config.get("DEFAULT", "nick"),
