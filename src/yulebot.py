@@ -69,7 +69,7 @@ class YuleBot(irc.bot.SingleServerIRCBot):
     def help(self, recipient=None):
         recipient = self.channel if recipient == None else recipient
         logging.debug("Showing help to %s" % recipient)
-        self.connection.privmsg(recipient, "Hi, you can see a description at https://github.com/rbreu/yulebot#yuletide-bot")
+        self.connection.privmsg(recipient, "Hi, you can see a description at http://github.com/rbreu/yulebot#yuletide-bot")
             
 
 # Create the bot
